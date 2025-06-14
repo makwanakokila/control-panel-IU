@@ -241,8 +241,8 @@ export default function UserManagement() {
                     {user.role === "Customer"
                       ? `${user.totalRides} rides`
                       : user.role === "Driver"
-                        ? `${user.totalRides} trips`
-                        : `${user.totalOrders} orders`}
+                      ? `${user.totalRides} trips`
+                      : `${user.totalOrders} orders`}
                   </p>
                 </div>
               </div>
@@ -423,6 +423,8 @@ export default function UserManagement() {
                   </DialogContent>
                 </Dialog>
 
+                {/* Edit button is now hidden from all cards */}
+                {/*
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button
@@ -499,7 +501,10 @@ export default function UserManagement() {
                     )}
                   </DialogContent>
                 </Dialog>
+                */}
 
+                {/* Suspend/Unblock button is now hidden from all cards */}
+                {/*
                 <Button
                   size="sm"
                   variant="outline"
@@ -511,6 +516,7 @@ export default function UserManagement() {
                   <Ban className="h-3 w-3 mr-1" />
                   {user.status === "Blocked" ? "Unblock" : "Suspend"}
                 </Button>
+                */}
 
                 <Button
                   size="sm"

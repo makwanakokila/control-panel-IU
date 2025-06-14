@@ -186,15 +186,15 @@ export default function Dashboard() {
                       <Phone className="h-3 w-3 mr-1" />
                       Call
                     </Button>
-                    <Button
+                    {/* <Button
                       size="sm"
                       variant="outline"
                       onClick={() => handleChat(driver.id, driver.name)}
-                      className="border-gray-700 text-gray-400 hover:bg-gray-700"
+                      className="border-gray-700 text-gray-400 hover:bg-gray-700 hide"
                     >
                       <MessageSquare className="h-3 w-3 mr-1" />
                       Chat
-                    </Button>
+                    </Button> */}
                     <Button
                       size="sm"
                       onClick={() => handleTrack(driver.id, driver.name)}
@@ -279,7 +279,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-between">
             <CardTitle className="text-white">Recent Activities</CardTitle>
             <div className="flex space-x-2">
-              {["All", "Ride", "Food", "Courier"].map((filter) => (
+              {["All", "Ride",  "Courier"].map((filter) => (
                 <Button
                   key={filter}
                   variant={activeFilter === filter ? "default" : "outline"}
@@ -306,7 +306,7 @@ export default function Dashboard() {
                     variant="outline"
                     className={`
                       ${activity.type === "Ride" ? "border-blue-500 text-blue-400" : ""}
-                      ${activity.type === "Food" ? "border-orange-500 text-orange-400" : ""}
+                       ${activity.type === "Food" ? "border-orange-500 text-orange-400" : ""}
                       ${activity.type === "Courier" ? "border-purple-500 text-purple-400" : ""}
                     `}
                   >

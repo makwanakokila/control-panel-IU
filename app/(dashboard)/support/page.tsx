@@ -156,10 +156,10 @@ export default function SupportManagement() {
           <h1 className="text-3xl font-bold text-white">Support Management</h1>
           <p className="text-gray-400 mt-1">Manage customer support tickets and communications</p>
         </div>
-        <Button className="bg-green-600 hover:bg-green-700 text-white">
+        {/* <Button className="bg-green-600 hover:bg-green-700 text-white">
           <MessageSquare className="h-4 w-4 mr-2" />
           New Ticket
-        </Button>
+        </Button> */}
       </div>
 
       {/* Stats Grid */}

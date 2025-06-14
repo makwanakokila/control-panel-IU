@@ -353,10 +353,13 @@ export default function ComplaintManagement() {
 
                         {/* Actions */}
                         <div className="space-y-2">
+                          {/* Reply to Customer Button - HIDDEN */}
+                          {/*
                           <Button className="w-full bg-green-600 hover:bg-green-700">
                             <MessageSquare className="h-4 w-4 mr-2" />
                             Reply to Customer
                           </Button>
+                          */}
                           <div className="grid grid-cols-2 gap-2">
                             <Button
                               variant="outline"

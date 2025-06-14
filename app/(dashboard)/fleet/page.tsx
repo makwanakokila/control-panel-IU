@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Car, Truck, Bike, Search, Edit, Eye, Link, Fuel, Calendar, User } from "lucide-react"
+import { Car, Truck, Bike, Search, Eye, PowerOff, Fuel, Calendar, User, Edit, Link } from "lucide-react" // Added Edit and Link icons back
 
 const vehicles = [
   {
@@ -81,10 +81,11 @@ export default function FleetManagement() {
   const [typeFilter, setTypeFilter] = useState("All")
   const [statusFilter, setStatusFilter] = useState("All")
   const [selectedVehicle, setSelectedVehicle] = useState<any>(null)
-  const [editingVehicle, setEditingVehicle] = useState<any>(null)
-  const [linkingDriver, setLinkingDriver] = useState<any>(null)
+  const [editingVehicle, setEditingVehicle] = useState<any>(null) // Kept for commented-out Edit functionality
+  const [linkingDriver, setLinkingDriver] = useState<any>(null) // Kept for commented-out Link functionality
+  const [currentVehicles, setCurrentVehicles] = useState(vehicles);
 
-  const filteredVehicles = vehicles.filter((vehicle) => {
+  const filteredVehicles = currentVehicles.filter((vehicle) => {
     const matchesSearch =
       vehicle.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       vehicle.number.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -125,16 +126,23 @@ export default function FleetManagement() {
     setSelectedVehicle(vehicle)
   }
 
+  // --- Commented-out Edit Functionality ---
   const handleEdit = (vehicle: any) => {
     setEditingVehicle({ ...vehicle })
   }
 
   const handleSaveEdit = () => {
-    alert(`Vehicle ${editingVehicle.name} updated successfully!`)
-    setEditingVehicle(null)
-    // In real implementation, update the vehicle data
+    alert(`Vehicle ${editingVehicle.name} updated successfully!`);
+    setEditingVehicle(null);
+    // In real implementation, you would dispatch an action to update the vehicle data
+    // For now, let's also update the currentVehicles state for demonstration
+    setCurrentVehicles((prevVehicles) =>
+      prevVehicles.map((v) => (v.id === editingVehicle.id ? editingVehicle : v))
+    );
   }
+  // ------------------------------------------
 
+  // --- Commented-out Link Driver Functionality ---
   const handleLinkDriver = (vehicle: any) => {
     setLinkingDriver(vehicle)
   }
@@ -142,7 +150,17 @@ export default function FleetManagement() {
   const handleSaveDriverLink = () => {
     alert(`Driver linked to ${linkingDriver.name} successfully!`)
     setLinkingDriver(null)
-    // In real implementation, link the driver to vehicle
+    // In real implementation, you would dispatch an action to link the driver to vehicle
+  }
+  // ------------------------------------------
+
+  const handleSuspend = (vehicleId: number) => {
+    setCurrentVehicles((prevVehicles) =>
+      prevVehicles.map((vehicle) =>
+        vehicle.id === vehicleId ? { ...vehicle, status: "Inactive" } : vehicle
+      )
+    )
+    alert(`Vehicle suspended successfully!`);
   }
 
   return (
@@ -341,6 +359,8 @@ export default function FleetManagement() {
                   </DialogContent>
                 </Dialog>
 
+                {/* Commented-out Edit Button */}
+                {/*
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button
@@ -417,7 +437,10 @@ export default function FleetManagement() {
                     )}
                   </DialogContent>
                 </Dialog>
+                */}
 
+                {/* Commented-out Link Driver Button */}
+                {/*
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button
@@ -464,6 +487,19 @@ export default function FleetManagement() {
                     )}
                   </DialogContent>
                 </Dialog>
+                */}
+
+                {/* Suspend Button (Active) */}
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="flex-1 border-gray-700 text-red-400 hover:bg-gray-800 hover:text-red-300"
+                  onClick={() => handleSuspend(vehicle.id)}
+                  disabled={vehicle.status === "Inactive"} // Disable if already inactive
+                >
+                  <PowerOff className="h-3 w-3 mr-1" />
+                  Suspend
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -475,7 +511,7 @@ export default function FleetManagement() {
         <Card className="bg-gray-900 border-gray-800">
           <CardContent className="pt-6">
             <div className="text-center">
-              <p className="text-2xl font-bold text-white">{vehicles.length}</p>
+              <p className="text-2xl font-bold text-white">{currentVehicles.length}</p>
               <p className="text-gray-400 text-sm">Total Vehicles</p>
             </div>
           </CardContent>
@@ -484,9 +520,9 @@ export default function FleetManagement() {
           <CardContent className="pt-6">
             <div className="text-center">
               <p className="text-2xl font-bold text-green-400">
-                {vehicles.filter((v) => v.status === "Active").length}
+                {currentVehicles.filter((v) => v.status === "Active").length}
               </p>
-              <p className="text-gray-400 text-sm">Active</p>
+            <p className="text-gray-400 text-sm">Active</p>
             </div>
           </CardContent>
         </Card>
@@ -494,7 +530,7 @@ export default function FleetManagement() {
           <CardContent className="pt-6">
             <div className="text-center">
               <p className="text-2xl font-bold text-yellow-400">
-                {vehicles.filter((v) => v.status === "Maintenance").length}
+                {currentVehicles.filter((v) => v.status === "Maintenance").length}
               </p>
               <p className="text-gray-400 text-sm">Maintenance</p>
             </div>
@@ -504,7 +540,7 @@ export default function FleetManagement() {
           <CardContent className="pt-6">
             <div className="text-center">
               <p className="text-2xl font-bold text-gray-400">
-                {vehicles.filter((v) => v.status === "Inactive").length}
+                {currentVehicles.filter((v) => v.status === "Inactive").length}
               </p>
               <p className="text-gray-400 text-sm">Inactive</p>
             </div>

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { MapPin, User, Car, Search, Eye, MessageSquare, Navigation, CheckCircle, XCircle } from "lucide-react"
+import { MapPin, User, Car, Search, Eye, Navigation } from "lucide-react" // Removed MessageSquare, CheckCircle, XCircle
 
 const rides = [
   {
@@ -246,9 +246,10 @@ export default function RidesManagement() {
                             <TabsTrigger value="details" className="data-[state=active]:bg-green-600">
                               Details
                             </TabsTrigger>
-                            <TabsTrigger value="logs" className="data-[state=active]:bg-green-600">
+                            {/* Trip Logs Tab (hidden) */}
+                            {/* <TabsTrigger value="logs" className="data-[state=active]:bg-green-600">
                               Trip Logs
-                            </TabsTrigger>
+                            </TabsTrigger> */}
                             <TabsTrigger value="tracking" className="data-[state=active]:bg-green-600">
                               Live Tracking
                             </TabsTrigger>
@@ -305,7 +306,8 @@ export default function RidesManagement() {
                               </div>
                             </div>
                           </TabsContent>
-                          <TabsContent value="logs" className="space-y-4">
+                          {/* Trip Logs content (can be removed or commented out) */}
+                          {/* <TabsContent value="logs" className="space-y-4">
                             <div className="bg-gray-800 p-4 rounded-lg">
                               <h4 className="text-white font-medium mb-3">Trip Timeline</h4>
                               <div className="space-y-3">
@@ -341,7 +343,7 @@ export default function RidesManagement() {
                                 )}
                               </div>
                             </div>
-                          </TabsContent>
+                          </TabsContent> */}
                           <TabsContent value="tracking" className="space-y-4">
                             <div className="bg-gray-800 p-4 rounded-lg">
                               <h4 className="text-white font-medium mb-3">Live Location</h4>
@@ -355,7 +357,8 @@ export default function RidesManagement() {
                             </div>
                           </TabsContent>
                         </Tabs>
-                        {selectedRideData.status === "Ongoing" && (
+                        {/* Removed Complete Ride and Cancel Ride buttons */}
+                        {/* {selectedRideData.status === "Ongoing" && (
                           <div className="flex space-x-2 pt-4 border-t border-gray-700">
                             <Button className="bg-green-600 hover:bg-green-700">
                               <CheckCircle className="h-4 w-4 mr-2" />
@@ -366,7 +369,7 @@ export default function RidesManagement() {
                               Cancel Ride
                             </Button>
                           </div>
-                        )}
+                        )} */}
                       </div>
                     )}
                   </DialogContent>
@@ -379,10 +382,11 @@ export default function RidesManagement() {
                   </Button>
                 )}
 
-                <Button size="sm" variant="outline" className="border-gray-700 text-gray-400 hover:bg-gray-800">
+                {/* Chat button (hidden) */}
+                {/* <Button size="sm" variant="outline" className="border-gray-700 text-gray-400 hover:bg-gray-800">
                   <MessageSquare className="h-3 w-3 mr-1" />
                   Chat
-                </Button>
+                </Button> */}
               </div>
             </CardContent>
           </Card>

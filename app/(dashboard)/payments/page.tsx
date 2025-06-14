@@ -37,7 +37,7 @@ const payments = [
   },
   {
     id: "PAY003",
-    user: "Pizza Palace",
+    user: "anata square",
     userType: "Vendor",
     amount: 1200,
     type: "Order Payment",
@@ -49,10 +49,10 @@ const payments = [
   },
   {
     id: "PAY004",
-    user: "Sarah Khan",
+    user: "mahi panchal",
     userType: "Customer",
     amount: 180,
-    type: "Food Order",
+    type: "Order Payment",
     method: "Card",
     status: "Failed",
     date: "2024-01-15 12:20",
@@ -149,10 +149,10 @@ export default function PaymentsManagement() {
           <h1 className="text-3xl font-bold text-white">Payments Management</h1>
           <p className="text-gray-400 mt-1">Monitor and manage all payments and payouts</p>
         </div>
-        <Button onClick={handleExport} className="bg-green-600 hover:bg-green-700 text-white">
+        {/* <Button onClick={handleExport} className="bg-green-600 hover:bg-green-700 text-white">
           <Download className="h-4 w-4 mr-2" />
           Export Data
-        </Button>
+        </Button> */}
       </div>
 
       {/* Stats Grid */}
@@ -415,7 +415,7 @@ export default function PaymentsManagement() {
                   </DialogContent>
                 </Dialog>
 
-                {payment.status === "Completed" && payment.type.includes("Payment") && (
+                {/* {payment.status === "Completed" && payment.type.includes("Payment") && (
                   <Button
                     size="sm"
                     variant="outline"
@@ -425,7 +425,7 @@ export default function PaymentsManagement() {
                     <RefreshCw className="h-3 w-3 mr-1" />
                     Refund
                   </Button>
-                )}
+                )} */}
 
                 {payment.status === "Failed" && (
                   <Button size="sm" onClick={() => handleRetry(payment)} className="bg-green-600 hover:bg-green-700">

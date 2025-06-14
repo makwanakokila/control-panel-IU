@@ -76,10 +76,10 @@ export default function ReportsManagement() {
             <Download className="h-4 w-4 mr-2" />
             Export PDF
           </Button>
-          <Button onClick={() => handleExport("excel")} className="bg-green-600 hover:bg-green-700">
+          {/* <Button onClick={() => handleExport("excel")} className="bg-green-600 hover:bg-green-700">
             <Download className="h-4 w-4 mr-2" />
             Export Excel
-          </Button>
+          </Button> */}
         </div>
       </div>
 
